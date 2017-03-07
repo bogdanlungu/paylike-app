@@ -1,0 +1,111 @@
+@import "_fonts";
+body {
+  font-family: $font-futura-medium;
+  font-size: 18px;
+  text-align: center;
+  background-color: #61A65E;
+  color: #FFFFFF;
+
+  h1 {
+    font-family: $font-futura-medium;
+    font-size: 35px;
+  }
+
+  .links a {
+    font-family: $font-futura-medium;
+    display: inline-block;
+    width: 15ex;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    color: #CCCCCC;
+  }
+
+  .links a.active {
+    color: purple;
+  }
+
+  .links {
+    margin-bottom: 1em;
+  }
+
+  .form-input {
+    outline: none;
+    display: block;
+    width: 250px;
+    border: 1px solid darken(#FFFFFF, 15%);
+    margin: 20px auto;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    font-weight: 400;
+
+    &:focus {
+      border: 1px solid green;
+      color: #CCC;
+    }
+  }
+
+  .content {
+    margin: 20px auto;
+    max-width: 500px;
+    min-height: 200px;
+    text-align: center;
+
+    ul {
+      text-align: center;
+      list-style: none;
+    }
+
+    a {
+      margin-left: 20px;
+    }
+  }
+
+  .search {
+    &.hide {
+      display: none !important;
+    }
+    &.show {
+      display: block !important;
+    }
+  }
+
+  .edit {
+    display: none;
+    &.hide {
+      display: none !important;
+    }
+    &.show {
+      display: block !important;
+    }
+  }
+
+  button {
+    outline: none;
+    height: 40px;
+    text-align: center;
+    width: 130px;
+    border-radius: 40px;
+    background: #fff;
+    border: 2px solid green;
+    color: green;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    font: {
+      size: 12px;
+      weight: bold;
+    }
+    cursor: pointer;
+    transition: all 0.25s ease;
+    &:hover {
+      color: white;
+      background: green;
+    }
+    &:active {
+      letter-spacing: 2px;
+    }
+  }
+}

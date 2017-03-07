@@ -1,0 +1,11 @@
+@font-face {
+  font-family: Futura-CondensedMedium;
+  src: url('./assets/fonts/Futura-CondensedMedium/Futura-CondensedMedium.otf') format('opentype');
+  src: url('./assets/fonts/Futura-CondensedMedium/Futura-CondensedMedium.eot'); /* IE9 Compat Modes */
+  src: url('./assets/fonts/Futura-CondensedMedium/Futura-CondensedMedium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('./assets/fonts/Futura-CondensedMedium/Futura-CondensedMedium.woff') format('woff'), /* Modern Browsers */
+  url('./assets/fonts/Futura-CondensedMedium/Futura-CondensedMedium.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('./assets/fonts/Futura-CondensedMedium/Futura-CondensedMedium.svg') format('svg'); /* Legacy iOS */
+}
+
+$font-futura-medium: 'Futura-CondensedMedium', sans-serif;
