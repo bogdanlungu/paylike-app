@@ -6,7 +6,8 @@
   "scripts": {
     "build": "browserify front/main.js | uglifyjs -cm > public/bundle.js",
     "start:development": "export NODE_ENV=development && nodemon server.js",
-    "start": "node server/server.js",
+    "start": "npm-run-all --parallel server watch",
+    "server": "node server/server.js",
     "watch": "watchify front/main.js -o public/bundle.js -dv",
     "scss": "node-sass ./front/assets/scss/index.scss ./public/style.css",
     "scss-watch": "node-sass -w ./front/assets/scss/index.scss ./public/style.css"
@@ -27,6 +28,7 @@
     "watchify": "^3.3.1"
   },
   "devDependencies": {
+    "npm-run-all": "^2.1.1",
     "nodemon": "^1.11.0"
   },
   "engines": {
