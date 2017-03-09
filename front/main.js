@@ -7,10 +7,13 @@ const request = require('request')
 const EventListener = require('vdom-event-listener')
 
 
+const searchAPI = require('./js/searchAPI')
+// const render = require('./js/render')
+
 /*** State objects
 ****/
-var initState = { results: ['Type something'], keyword: '' }
-var state = {
+let initState = { results: ['Type something'], keyword: '' }
+let state = {
   currentPage: 'search',
   startEdit: false,
   merchantToEdit: {}
@@ -19,17 +22,10 @@ var state = {
 
 /*** Render function vdom
 ****/
+
 function render(state) {
 
-  return h('div', [
-    h('div', [
-      h('span', 'Search: '),
-      h('span.name', state.keyword)
-    ]),
-    h('ul', state.results.map(renderResult))
-  ])
-
-  function renderResult(result) {
+  const renderResult = (result) => {
     if (result.id) {
       return h('li', [
         h('span', result.name),
@@ -46,12 +42,22 @@ function render(state) {
       ])
     }
   }
+
+  return h('div', [
+    h('div', [
+      h('span', 'Search: '),
+      h('span.name', state.keyword)
+    ]),
+    h('ul', state.results.map(renderResult))
+  ])
+
 }
+
 
 
 /*** Set up a loop
 ****/
-var loop = mainLoop(initState, render, {
+let loop = mainLoop(initState, render, {
 
   create: require('virtual-dom/create-element'),
   diff: require('virtual-dom/diff'),
@@ -80,45 +86,11 @@ theInput.addEventListener('keyup', () => {
 })
 
 
-/*** Call the api - the search
-****/
-function searchAPI(search, updateState) {
-
-  const url = 'http://localhost:8000/api/search?name=' + search
-
-  request({
-    url: url,
-    json: true
-  }, function (error, response, body) {
-
-    if (!error && response.statusCode === 200) {
-      let newArray = []
-      const response = body.merchants
-      response.map((index) => {
-        const id = index.id,
-          name = index.name,
-          email = index.email,
-          descriptor = index.descriptor
-        theObject = {
-          id,
-          name,
-          email,
-          descriptor
-        }
-        newArray.push(theObject)
-      })
-
-      updateState(newArray, search)
-    }
-  })
-}
-
-
 /*** Update the state
 ****/
 function updateState(results, search) {
 
-  if (search.length != 0) {
+  if (search.length !== 0) {
     loop.update({
       results: results,
       keyword: search
@@ -136,8 +108,8 @@ function updateState(results, search) {
 ****/
 function renderPage(page) {
 
-  var editPage = document.querySelector('.edit').classList
-  var searchPage = document.querySelector('.search').classList
+  const editPage = document.querySelector('.edit').classList
+  const searchPage = document.querySelector('.search').classList
 
   switch (page) {
     case 'search':
