@@ -8,7 +8,6 @@ const EventListener = require('vdom-event-listener')
 
 
 const searchAPI = require('./js/searchAPI')
-// const render = require('./js/render')
 
 /*** State objects
 ****/
