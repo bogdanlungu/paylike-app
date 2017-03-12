@@ -6,17 +6,16 @@ const createElement = require('virtual-dom/create-element')
 const request = require('request')
 const EventListener = require('vdom-event-listener')
 
-
 const searchAPI = require('./js/searchAPI')
+const theState = require('./js/state')
+const renderPage = require('./js/renderPage')
+const saveButton = require('./js/saveButton')
+
 
 /*** State objects
 ****/
-let initState = { results: ['Type something'], keyword: '' }
-let state = {
-  currentPage: 'search',
-  startEdit: false,
-  merchantToEdit: {}
-}
+let initState = theState.initState
+let state = theState.state
 
 
 /*** Render function vdom
@@ -51,7 +50,6 @@ function render(state) {
   ])
 
 }
-
 
 
 /*** Set up a loop
@@ -99,33 +97,6 @@ function updateState(results, search) {
       results: ['Please type something'],
       keyword: search
     })
-  }
-}
-
-
-/*** Render the right page
-****/
-function renderPage(page) {
-
-  const editPage = document.querySelector('.edit').classList
-  const searchPage = document.querySelector('.search').classList
-
-  switch (page) {
-    case 'search':
-      editPage.add('hide')
-      editPage.remove('show')
-      searchPage.add('show')
-      break
-
-    case 'edit':
-      editPage.add('show')
-      searchPage.remove('show')
-      searchPage.add('hide')
-      break
-
-    default:
-      editPage.add('hide')
-      searchPage.add('show')
   }
 }
 
@@ -181,6 +152,8 @@ goBack.addEventListener('click', () => {
 
 /*** Edit - save the merchant
 ****/
+saveButton()
+/*
 let saveButton = document.querySelector('.save')
 saveButton.addEventListener('click', () => {
 
@@ -202,3 +175,4 @@ saveButton.addEventListener('click', () => {
   })
 
 })
+*/
